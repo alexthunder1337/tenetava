@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+   {% load activeurl %}
+  <head>
+    <title>Художник Тенета В.А.</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/templatemo_misc.css' %}">
+    <link href="{% static 'css/templatemo_style.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,600' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}">
+		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+    <script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+	<script src="{% static 'js/jquery.lightbox.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.70736.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </head>
+  <div class="container">
+    <div class="row">
+	<br />
+        <div class="col-md-12">
+	<nav role="navigation" class="navbar navbar-default">
+  <!-- Логотип и мобильное меню -->
+	<div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseElements">
+	    <span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+		<a href="/" class="navbar-brand">Tenetava.ru</a>
+	</div>
+  <!-- Навигационное меню -->
+    <div id="collapseElements" class="collapse navbar-collapse">
+ {% activeurl %}
+      <ul class="nav navbar-nav">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/gallery">Галерея</a></li>
+  <!-- Выподающие меню с подпунктами -->
+    </ul>
+ {% endactiveurl %}
+  <!-- Поиск по сайту -->
+    <form role="search" class="navbar-form navbar-left">
+      <div class="form-group col-md-12">
+        <input type="text" placeholder="Найти" class="form-control">
+      </div>
+    </form>
+    </div>
+</nav>
+	</div>
+</div>
+</div>
+  <body>
+ {% block content %}
+ {% endblock %}
+  </body>
+    <div class="clear"></div>
+     <div class="templatemo_footer">
+    	<div class="container">
+    	<div class="row">
+        	<div class="col-md-9 col-sm-12">
+            	<span>Copyright &copy; 2018 Teneta V.A.</span>
+            </div>
+            <div class="col-md-3 col-sm-12 templatemo_rfooter">
+            	  <a href="#">
+                 	<div class="hex_footer">
+					<span class="fa fa-facebook"></span>
+					</div>
+                  </a>
+                  <a href="#">
+                    <div class="hex_footer">
+					 <span class="fa fa-twitter"></span>
+					</div>
+                    </a>
+                  <a href="#">
+                 	<div class="hex_footer">
+					 <span class="fa fa-linkedin"></span>
+					</div>
+                 </a>
+                <a href="#">
+                	<div class="hex_footer">
+					 <span class="fa fa-rss"></span>
+					</div>
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- footer end -->
+<!-- templatemo 400 polygon -->
+
+

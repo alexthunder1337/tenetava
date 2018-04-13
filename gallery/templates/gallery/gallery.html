@@ -1,0 +1,113 @@
+{% extends "gallery/wrapper.html" %}
+
+{% block content %}
+ <div class="container">
+ 				<div class="gamma-container gamma-loading" id="gamma-container">
+					<ul class="gamma-gallery">
+ {% load staticfiles %}
+                        {% load sorl_thumbnail %}
+                {% for img in images %}
+						<li>
+							<div data-alt="{{ img.p_name }}" data-description="<h3>{{ img.p_name }}<br>
+                            Тип: {{ img.p_type }}<br>
+							Размер: {{ img.p_width }}x{{ img.p_height }}<br>
+							Цена: {{ img.p_price }}₽<br>
+							Год: {{ img.p_year }}</h3>" data-max-width="1800" data-max-height="1350">
+                                {% thumbnail img.p_image "2000x2000" as xxxlarge %}
+								<div data-src="{{ xxxlarge.url }}" data-min-width="1300"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "1700x1700" as xxlarge %}
+								<div data-src="{{ xxlarge.url }}" data-min-width="1000"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "1400x1400" as xlarge %}
+								<div data-src="{{ xlarge.url }}" data-min-width="700"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "1000x1000" as large %}
+								<div data-src="{{ large.url }}" data-min-width="300"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "500x500" as medium %}
+								<div data-src="{{ medium.url }}" data-min-width="200"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "300x300" as small %}
+								<div data-src="{{ small.url }}" data-min-width="140"></div>
+								 {% endthumbnail %}
+								{% thumbnail img.p_image "120x120" as xsmall %}
+								<div data-src="{{ xsmall.url }}"></div>
+								 {% endthumbnail %}
+							</div>
+                     <!--    <div class="stock">{% if img.p_in_stock %}<img src="{% static 'images/instock.png' %}">
+                        {% else %}<img src="{% static 'images/outstock.png' %}">{% endif %}</div> -->
+						</li>
+                {% endfor %}
+					</ul>
+				</div>
+			</div><!--/main-->
+   {% if images.has_other_pages %}
+  <ul class="pagination">
+    {% if images.has_previous %}
+      <li><a href="?page={{ images.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in images.paginator.page_range %}
+      {% if images.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if images.has_next %}
+      <li><a href="?page={{ images.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="{% static 'js/jquery.masonry.min.js' %}"></script>
+		<script src="{% static 'js/jquery.history.js' %}"></script>
+		<script src="{% static 'js/js-url.min.js' %}"></script>
+		<script src="{% static 'js/jquerypp.custom.js' %}"></script>
+		<script src="{% static 'js/gamma.js' %}"></script>
+		<script type="text/javascript">
+                $(function() {
+
+                    const GammaSettings = {
+                        // order is important!
+                        viewport: [{
+                            width: 1200,
+                            columns: 5
+                        }, {
+                            width: 900,
+                            columns: 4
+                        }, {
+                            width: 500,
+                            columns: 3
+                        }, {
+                            width: 320,
+                            columns: 2
+                        }, {
+                            width: 0,
+                            columns: 2
+                        }]
+                    };
+                    Gamma.init( GammaSettings, fncallback );
+				var page = 0,
+					items = []
+					    function fncallback() {
+					$( '#loadmore' ).show().on( 'click', function() {
+						++page;
+						var newitems = items[page-1]
+						if( page <= 1 ) {
+							Gamma.add( $( newitems ) );
+						}
+						if( page === 1 ) {
+							$( this ).remove();
+						}
+					} );
+				}
+			});
+
+		</script>
+ {% endblock %}
